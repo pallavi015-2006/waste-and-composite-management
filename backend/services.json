@@ -1,0 +1,219 @@
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b885"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b882"
+  },
+  "title": "Home Composting Starter Kit & Setup",
+  "description": "Complete home composting setup including bin selection, layering guidance, and a 3-month support plan.",
+  "serviceType": "home_composting",
+  "location": "Delhi",
+  "price": 1500,
+  "rating": 4.8,
+  "reviewCount": 24,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.480Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b886"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b883"
+  },
+  "title": "Bulk Organic Waste Collection",
+  "description": "Weekly bulk organic waste collection for apartments and commercial complexes. Includes sorting and transport.",
+  "serviceType": "bulk_waste",
+  "location": "Mumbai",
+  "price": 3500,
+  "rating": 4.6,
+  "reviewCount": 18,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.480Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b887"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b882"
+  },
+  "title": "Compost Pickup — Fortnightly",
+  "description": "Fortnightly compost material pickup from your doorstep. We process it at our facility and return finished compost.",
+  "serviceType": "pickup",
+  "location": "Bangalore",
+  "price": 800,
+  "rating": 4.9,
+  "reviewCount": 42,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.480Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b888"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b884"
+  },
+  "title": "1-on-1 Composting Consultation",
+  "description": "Personalised 60-minute video or in-person consultation. Troubleshoot your compost pile, optimise ratios, and get expert tips.",
+  "serviceType": "consultation",
+  "location": "Online",
+  "price": 500,
+  "rating": 5,
+  "reviewCount": 11,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.480Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b889"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b883"
+  },
+  "title": "Vermicomposting (Worm Farm) Setup",
+  "description": "Set up a thriving worm farm at home or office. Includes live worms, bedding, and a 2-month check-in schedule.",
+  "serviceType": "vermicomposting",
+  "location": "Delhi",
+  "price": 2200,
+  "rating": 4.7,
+  "reviewCount": 15,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.480Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b88a"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b884"
+  },
+  "title": "Community Composting Hub Management",
+  "description": "Design, set up, and manage a shared composting hub for housing societies or community gardens.",
+  "serviceType": "community_composting",
+  "location": "Pune",
+  "price": 8000,
+  "rating": 4.5,
+  "reviewCount": 8,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.480Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b88b"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b882"
+  },
+  "title": "Compost-Enriched Garden Soil Supply",
+  "description": "Fresh, ready-to-use compost-enriched potting soil delivered to your doorstep. Available in 10kg, 25kg, and 50kg bags.",
+  "serviceType": "garden_soil_supply",
+  "location": "Bangalore",
+  "price": 400,
+  "rating": 4.8,
+  "reviewCount": 33,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.480Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b88c"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b883"
+  },
+  "title": "Compost Bin / Tumbler Rental",
+  "description": "Monthly rental of high-quality composting tumblers. No upfront investment — perfect for beginners.",
+  "serviceType": "compost_bin_rental",
+  "location": "Mumbai",
+  "price": 250,
+  "rating": 4.4,
+  "reviewCount": 20,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.480Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b88d"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b884"
+  },
+  "title": "Composting Workshop (Group)",
+  "description": "Hands-on 3-hour workshop for up to 20 participants. Covers hot composting, cold composting, troubleshooting, and Q&A.",
+  "serviceType": "workshop_training",
+  "location": "Hyderabad",
+  "price": 1200,
+  "rating": 4.9,
+  "reviewCount": 27,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.480Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b88e"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b882"
+  },
+  "title": "Organic Waste Audit & Report",
+  "description": "Full audit of your household or business organic waste streams. Get a detailed report with composting recommendations and potential savings.",
+  "serviceType": "waste_audit",
+  "location": "Online",
+  "price": 1800,
+  "rating": 4.6,
+  "reviewCount": 9,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.480Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e895d5f3885c1115af98a0"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b881"
+  },
+  "title": "to clean the garbage",
+  "description": "clean the garbage",
+  "serviceType": "home_composting",
+  "location": "phagwara",
+  "price": 25,
+  "rating": 0,
+  "reviewCount": 0,
+  "createdAt": {
+    "$date": "2026-04-22T09:33:09.916Z"
+  },
+  "__v": 0
+}

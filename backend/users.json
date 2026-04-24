@@ -1,0 +1,129 @@
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b881"
+  },
+  "name": "System Admin",
+  "email": "admin@compostify.com",
+  "password": "$2b$10$VwRw5rUbzLNPO5iRpxC.vOcvcSg2.ayo8OGRtURe/fDSiYZdLi9yS",
+  "role": "admin",
+  "isVerified": true,
+  "otp": null,
+  "otpExpiry": null,
+  "otpVerified": true,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.292Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b882"
+  },
+  "name": "Priya Sharma",
+  "email": "priya@compostify.com",
+  "password": "$2b$10$VwRw5rUbzLNPO5iRpxC.vOpE4xkf7IMT35vA2XxSg947onkviTBje",
+  "role": "expert",
+  "isVerified": true,
+  "otp": null,
+  "otpExpiry": null,
+  "otpVerified": false,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.357Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b883"
+  },
+  "name": "Rohan Verma",
+  "email": "rohan@compostify.com",
+  "password": "$2b$10$VwRw5rUbzLNPO5iRpxC.vOpE4xkf7IMT35vA2XxSg947onkviTBje",
+  "role": "expert",
+  "isVerified": true,
+  "otp": null,
+  "otpExpiry": null,
+  "otpVerified": false,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.418Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e7b1419bf0b9a46a99b884"
+  },
+  "name": "Anita Desai",
+  "email": "anita@compostify.com",
+  "password": "$2b$10$VwRw5rUbzLNPO5iRpxC.vOpE4xkf7IMT35vA2XxSg947onkviTBje",
+  "role": "expert",
+  "isVerified": true,
+  "otp": null,
+  "otpExpiry": null,
+  "otpVerified": false,
+  "createdAt": {
+    "$date": "2026-04-21T17:17:53.477Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69e89a09f3885c1115af98a2"
+  },
+  "name": "samidha",
+  "email": "samidharajev@gmail.com",
+  "password": "$2b$10$ofM8MwHnOh0jHMdxqjvX3O8GmT7FQLSNJlDNnCXePbBs5X/D0sKm6",
+  "role": "user",
+  "isVerified": false,
+  "otp": null,
+  "otpExpiry": null,
+  "otpVerified": true,
+  "createdAt": {
+    "$date": "2026-04-22T09:51:05.883Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69eb36e77e9ee54c24f32601"
+  },
+  "name": "Riya Sharma",
+  "email": "riyasharma7168@gmail.com",
+  "password": "$2b$10$x4qpofw.6SKdAiaSlqPzKekRgfY0xwxGNbqaPMCDNLwnmZFjG0FB6",
+  "role": "user",
+  "isVerified": false,
+  "otp": null,
+  "otpExpiry": null,
+  "otpVerified": false,
+  "resetOtp": null,
+  "resetOtpExpiry": null,
+  "createdAt": {
+    "$date": "2026-04-24T09:24:55.308Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "69eb4bd59629fd4bec212604"
+  },
+  "name": "abhishek",
+  "email": "abhi@gmail.com",
+  "password": "$2b$10$Lxp5lw8AcFRUGNCqbRwVzuZLh0acVamyC4KQNQ/noLC.orWfjko2a",
+  "role": "user",
+  "isVerified": false,
+  "otp": null,
+  "otpExpiry": null,
+  "otpVerified": false,
+  "resetOtp": null,
+  "resetOtpExpiry": null,
+  "createdAt": {
+    "$date": "2026-04-24T10:54:13.855Z"
+  },
+  "__v": 0
+}

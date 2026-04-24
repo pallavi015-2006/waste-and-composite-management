@@ -1,0 +1,23 @@
+{
+  "_id": {
+    "$oid": "69eb6da14eeeaea36950eb6f"
+  },
+  "user": {
+    "$oid": "69e7b1419bf0b9a46a99b881"
+  },
+  "service": {
+    "$oid": "69e895d5f3885c1115af98a0"
+  },
+  "provider": {
+    "$oid": "69e7b1419bf0b9a46a99b881"
+  },
+  "status": "pending",
+  "scheduledDate": {
+    "$date": "2026-04-22T00:00:00.000Z"
+  },
+  "notes": "clean properly",
+  "createdAt": {
+    "$date": "2026-04-22T09:49:52.347Z"
+  },
+  "__v": 0
+}
