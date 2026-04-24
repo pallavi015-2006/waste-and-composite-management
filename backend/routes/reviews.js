@@ -1,62 +1,154 @@
+// const express = require('express');
+// const router = express.Router();
+// const Review = require('../models/Review');
+// const Service = require('../models/Service');
+// const auth = require('../middleware/auth');
+
+// // GET /api/reviews/:serviceId
+// // Fetch reviews for a specific service
+// router.get('/:serviceId', async (req, res) => {
+//   try {
+//     const reviews = await Review.find({ service: req.params.serviceId })
+//       .populate('user', 'name')
+//       .sort({ createdAt: -1 });
+//     res.json(reviews);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send('Server Error');
+//   }
+// });
+
+// // POST /api/reviews/:serviceId
+// // Add a review to a service
+// router.post('/:serviceId', auth, async (req, res) => {
+//   try {
+//     const { rating, comment } = req.body;
+//     const serviceId = req.params.serviceId;
+
+//     const service = await Service.findById(serviceId);
+//     if (!service) {
+//       return res.status(404).json({ message: 'Service not found' });
+//     }
+
+//     // Check if user already reviewed
+//     const existingReview = await Review.findOne({ user: req.user.id, service: serviceId });
+//     if (existingReview) {
+//       return res.status(400).json({ message: 'You have already reviewed this service' });
+//     }
+
+//     const newReview = new Review({
+//       user: req.user.id,
+//       service: serviceId,
+//       rating: Number(rating),
+//       comment
+//     });
+
+//     await newReview.save();
+
+//     // Recalculate average rating
+//     const allReviews = await Review.find({ service: serviceId });
+//     const avgRating = allReviews.reduce((acc, curr) => acc + curr.rating, 0) / allReviews.length;
+    
+//     service.rating = avgRating.toFixed(1);
+//     service.reviewCount = allReviews.length;
+//     await service.save();
+
+//     res.json(newReview);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send('Server Error');
+//   }
+// });
+
+// module.exports = router;
+
+
+
+
+
+
 const express = require('express');
 const router = express.Router();
 const Review = require('../models/Review');
 const Service = require('../models/Service');
 const auth = require('../middleware/auth');
 
-// GET /api/reviews/:serviceId
-// Fetch reviews for a specific service
+// ================= GET REVIEWS =================
 router.get('/:serviceId', async (req, res) => {
   try {
     const reviews = await Review.find({ service: req.params.serviceId })
       .populate('user', 'name')
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .lean();
+
     res.json(reviews);
+
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
-// POST /api/reviews/:serviceId
-// Add a review to a service
+// ================= ADD REVIEW =================
 router.post('/:serviceId', auth, async (req, res) => {
   try {
     const { rating, comment } = req.body;
     const serviceId = req.params.serviceId;
+
+    // ✅ Validation
+    if (!rating || !comment) {
+      return res.status(400).json({ message: 'Rating and comment are required' });
+    }
+
+    if (rating < 1 || rating > 5) {
+      return res.status(400).json({ message: 'Rating must be between 1 and 5' });
+    }
 
     const service = await Service.findById(serviceId);
     if (!service) {
       return res.status(404).json({ message: 'Service not found' });
     }
 
-    // Check if user already reviewed
+    // ✅ Prevent duplicate reviews
     const existingReview = await Review.findOne({ user: req.user.id, service: serviceId });
     if (existingReview) {
       return res.status(400).json({ message: 'You have already reviewed this service' });
     }
 
-    const newReview = new Review({
+    const newReview = await new Review({
       user: req.user.id,
       service: serviceId,
       rating: Number(rating),
-      comment
-    });
+      comment: comment.trim()
+    }).save();
 
-    await newReview.save();
+    // ✅ Optimized rating calculation
+    const stats = await Review.aggregate([
+      { $match: { service: service._id } },
+      {
+        $group: {
+          _id: '$service',
+          avgRating: { $avg: '$rating' },
+          count: { $sum: 1 }
+        }
+      }
+    ]);
 
-    // Recalculate average rating
-    const allReviews = await Review.find({ service: serviceId });
-    const avgRating = allReviews.reduce((acc, curr) => acc + curr.rating, 0) / allReviews.length;
-    
-    service.rating = avgRating.toFixed(1);
-    service.reviewCount = allReviews.length;
+    if (stats.length > 0) {
+      service.rating = Number(stats[0].avgRating.toFixed(1));
+      service.reviewCount = stats[0].count;
+    } else {
+      service.rating = 0;
+      service.reviewCount = 0;
+    }
+
     await service.save();
 
     res.json(newReview);
+
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
