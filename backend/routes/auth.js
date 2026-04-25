@@ -617,6 +617,64 @@ router.post('/register', async (req, res) => {
 });
 
 // ================= LOGIN (STEP 1) =================
+// router.post('/login', async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+
+//     const emailNormalized = email.toLowerCase().trim();
+
+//     const user = await User.findOne({ email: emailNormalized }).select('+password');
+
+//     if (!user) return res.status(400).json({ message: 'Invalid credentials' });
+
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+
+//     // ✅ Generate OTP
+//     // const otp = generateOTP();
+
+//     // user.otp = otp;
+//     // user.otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
+//     // user.otpVerified = false;
+//     // await user.save();
+
+//     // ✅ Send email
+//     await sendEmail({
+//       to: user.email,
+//       subject: 'Your Compostify OTP',
+//       body: `Your OTP is: ${otp}`
+//     });
+
+
+
+//     const otp = generateOTP();
+
+// // ✅ Assign OTP
+// user.otp = otp;
+// user.otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
+// user.otpVerified = false;
+
+// // 🔥 VERY IMPORTANT (this is missing in your code)
+// await user.save();
+
+// // Debug (optional)
+// console.log("OTP saved:", otp);
+
+//     // ✅ RETURN OTP (for popup demo)
+//     res.json({
+//       message: 'OTP sent',
+//       userId: user._id,
+//       otp: otp   // 🔥 IMPORTANT
+//     });
+
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: 'Server error' });
+//   }
+// });
+
+
+
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -630,26 +688,30 @@ router.post('/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-    // ✅ Generate OTP
+    // ✅ 1. Generate OTP FIRST
     const otp = generateOTP();
 
+    // ✅ 2. Save OTP in DB
     user.otp = otp;
     user.otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
     user.otpVerified = false;
-    await user.save();
 
-    // ✅ Send email
+    await user.save();   // 🔥 MUST
+
+    console.log("OTP saved:", otp);
+
+    // ✅ 3. Send Email AFTER saving
     await sendEmail({
       to: user.email,
       subject: 'Your Compostify OTP',
       body: `Your OTP is: ${otp}`
     });
 
-    // ✅ RETURN OTP (for popup demo)
+    // ✅ 4. Send response
     res.json({
       message: 'OTP sent',
       userId: user._id,
-      otp: otp   // 🔥 IMPORTANT
+      otp: otp   // for popup demo
     });
 
   } catch (err) {
