@@ -967,7 +967,12 @@
         const data = await api.auth.login({ email, password });
 
         // store user id
+        // pendingUserId = data.userId;
+
         pendingUserId = data.userId;
+
+// ✅ ADD THIS LINE (don’t remove above)
+localStorage.setItem("userId", data.userId);
 
         // move to OTP screen
         document.getElementById('otp-email-display').textContent = email;
@@ -1002,64 +1007,141 @@
 
 
         // Step 2: Verify OTP
-        document.getElementById('otp-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const otp = document.getElementById('otp-input').value.trim();
-            const btn = document.getElementById('verify-btn');
+        // document.getElementById('otp-form').addEventListener('submit', async (e) => {
+        //     e.preventDefault();
+        //     const otp = document.getElementById('otp-input').value.trim();
+        //     const btn = document.getElementById('verify-btn');
 
-            if (otp.length !== 6) {
-                showToast('Please enter the full 6-digit code.', 'error');
-                return;
-            }
+        //     if (otp.length !== 6) {
+        //         showToast('Please enter the full 6-digit code.', 'error');
+        //         return;
+        //     }
 
-            btn.disabled = true;
-            btn.innerHTML = 'Verifying... ⏳';
+        //     btn.disabled = true;
+        //     btn.innerHTML = 'Verifying... ⏳';
 
-            try {
-                const data = await api.auth.verifyOtp({ userId: pendingUserId, otp });
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
+        //     try {
+        //         const data = await api.auth.verifyOtp({ userId: pendingUserId, otp });
+        //         localStorage.setItem('token', data.token);
+        //         localStorage.setItem('user', JSON.stringify(data.user));
 
-                clearInterval(otpTimerInterval);
-                clearInterval(resendCooldownInterval);
+        //         clearInterval(otpTimerInterval);
+        //         clearInterval(resendCooldownInterval);
 
-                document.getElementById('step-otp').classList.add('hidden');
-                document.getElementById('step-success').classList.remove('hidden');
+        //         document.getElementById('step-otp').classList.add('hidden');
+        //         document.getElementById('step-success').classList.remove('hidden');
 
-                setTimeout(() => {
-                    window.location.href = data.user.role === 'admin' ? 'admin.html' : 'dashboard.html';
-                }, 1200);
-            } catch (err) {
-                showToast(err.message, 'error');
-                btn.disabled = false;
-                btn.innerHTML = 'Verify & Log In 🌿';
-            }
-        });
+        //         setTimeout(() => {
+        //             window.location.href = data.user.role === 'admin' ? 'admin.html' : 'dashboard.html';
+        //         }, 1200);
+        //     } catch (err) {
+        //         showToast(err.message, 'error');
+        //         btn.disabled = false;
+        //         btn.innerHTML = 'Verify & Log In 🌿';
+        //     }
+        // });
+
+
+document.getElementById('otp-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const otp = document.getElementById('otp-input').value.trim();
+    const btn = document.getElementById('verify-btn');
+
+    if (otp.length !== 6) {
+        showToast('Please enter the full 6-digit code.', 'error');
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = 'Verifying... ⏳';
+
+    try {
+        // ✅ get from localStorage (not pendingUserId)
+        const userId = localStorage.getItem("userId");
+
+        const data = await api.auth.verifyOtp({ userId, otp });
+
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+
+        clearInterval(otpTimerInterval);
+        clearInterval(resendCooldownInterval);
+
+        document.getElementById('step-otp').classList.add('hidden');
+        document.getElementById('step-success').classList.remove('hidden');
+
+        setTimeout(() => {
+            window.location.href = data.user.role === 'admin' ? 'admin.html' : 'dashboard.html';
+        }, 1200);
+
+    } catch (err) {
+        showToast(err.message, 'error');
+        btn.disabled = false;
+        btn.innerHTML = 'Verify & Log In 🌿';
+    }
+});
+
+
 
         // Resend OTP
-        document.getElementById('resend-btn').addEventListener('click', async () => {
-            if (!pendingUserId) return;
-            try {
-                await api.auth.resendOtp({ userId: pendingUserId });
-                startOtpTimer(600);
-                startResendCooldown(60);
-                document.getElementById('otp-input').value = '';
-                showToast('New OTP sent! Check your email.', 'success');
-            } catch (err) {
-                showToast(err.message, 'error');
-            }
-        });
+        // document.getElementById('resend-btn').addEventListener('click', async () => {
+        //     if (!pendingUserId) return;
+        //     try {
+        //         await api.auth.resendOtp({ userId: pendingUserId });
+        //         startOtpTimer(600);
+        //         startResendCooldown(60);
+        //         document.getElementById('otp-input').value = '';
+        //         showToast('New OTP sent! Check your email.', 'success');
+        //     } catch (err) {
+        //         showToast(err.message, 'error');
+        //     }
+        // });
 
-        // Back button
+
+
+        document.getElementById('resend-btn').addEventListener('click', async () => {
+    const userId = localStorage.getItem("userId");  // ✅ FIX
+    if (!userId) return;
+
+    try {
+        await api.auth.resendOtp({ userId });
+
+        startOtpTimer(600);
+        startResendCooldown(60);
+        document.getElementById('otp-input').value = '';
+
+        showToast('New OTP sent! Check your email.', 'success');
+    } catch (err) {
+        showToast(err.message, 'error');
+    }
+});
+
+        // // Back button
+        // document.getElementById('back-btn').addEventListener('click', () => {
+        //     clearInterval(otpTimerInterval);
+        //     clearInterval(resendCooldownInterval);
+        //     pendingUserId = null;
+        //     document.getElementById('step-otp').classList.add('hidden');
+        //     document.getElementById('step-credentials').classList.remove('hidden');
+        //     document.getElementById('login-btn').disabled = false;
+        //     document.getElementById('login-btn').innerHTML = 'Continue <span>→</span>';
+        // });
+
         document.getElementById('back-btn').addEventListener('click', () => {
-            clearInterval(otpTimerInterval);
-            clearInterval(resendCooldownInterval);
-            pendingUserId = null;
-            document.getElementById('step-otp').classList.add('hidden');
-            document.getElementById('step-credentials').classList.remove('hidden');
-            document.getElementById('login-btn').disabled = false;
-            document.getElementById('login-btn').innerHTML = 'Continue <span>→</span>';
-        });
+    clearInterval(otpTimerInterval);
+    clearInterval(resendCooldownInterval);
+
+    pendingUserId = null;
+    localStorage.removeItem("userId");  // optional
+
+    document.getElementById('step-otp').classList.add('hidden');
+    document.getElementById('step-credentials').classList.remove('hidden');
+
+    const btn = document.getElementById('login-btn');
+    btn.disabled = false;
+    btn.innerHTML = 'Continue <span>→</span>';
+});
 
         // Only allow digits in OTP input
         document.getElementById('otp-input').addEventListener('input', (e) => {
