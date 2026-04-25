@@ -400,6 +400,7 @@
             }
 
             loadBookings();
+            loadDashboard();
 
             // ==================== ACTIVITY TIMELINE ====================
             const activityList = document.getElementById('activity-list');
@@ -435,6 +436,25 @@
                 ` : ''}
             `;
         });
+
+
+async function loadDashboard() {
+  try {
+    const bookings = await api.bookings.getAll();
+
+    const active = bookings.filter(b =>
+      b.status === 'pending' || b.status === 'accepted'
+    );
+
+    document.getElementById('total-bookings').textContent = active.length;
+
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+
+
     </script>
     <div id="footer-root"></div>
     <script>
