@@ -925,33 +925,81 @@
         }
 
         // Step 1: Submit credentials
+        // document.getElementById('login-form').addEventListener('submit', async (e) => {
+        //     e.preventDefault();
+        //     const email = document.getElementById('email').value;
+        //     const password = document.getElementById('password').value;
+        //     const btn = document.getElementById('login-btn');
+
+        //     btn.disabled = true;
+        //     btn.innerHTML = 'Sending OTP... ⏳';
+
+        //     try {
+        //         const data = await api.auth.login({ email, password });
+        //         pendingUserId = data.userId;
+
+        //         document.getElementById('otp-email-display').textContent = email;
+        //         document.getElementById('step-credentials').classList.add('hidden');
+        //         document.getElementById('step-otp').classList.remove('hidden');
+
+        //         startOtpTimer(600);
+        //         startResendCooldown(60);
+
+        //         showToast('OTP sent! Check your email (or server console in dev).', 'success');
+        //     } catch (err) {
+        //         showToast(err.message, 'error');
+        //         btn.disabled = false;
+        //         btn.innerHTML = 'Continue <span>→</span>';
+        //     }
+        // });
+
         document.getElementById('login-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const btn = document.getElementById('login-btn');
+    e.preventDefault();
 
-            btn.disabled = true;
-            btn.innerHTML = 'Sending OTP... ⏳';
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const btn = document.getElementById('login-btn');
 
-            try {
-                const data = await api.auth.login({ email, password });
-                pendingUserId = data.userId;
+    btn.disabled = true;
+    btn.innerHTML = 'Sending OTP... ⏳';
 
-                document.getElementById('otp-email-display').textContent = email;
-                document.getElementById('step-credentials').classList.add('hidden');
-                document.getElementById('step-otp').classList.remove('hidden');
+    try {
+        const data = await api.auth.login({ email, password });
 
-                startOtpTimer(600);
-                startResendCooldown(60);
+        // store user id
+        pendingUserId = data.userId;
 
-                showToast('OTP sent! Check your email (or server console in dev).', 'success');
-            } catch (err) {
-                showToast(err.message, 'error');
-                btn.disabled = false;
-                btn.innerHTML = 'Continue <span>→</span>';
-            }
-        });
+        // move to OTP screen
+        document.getElementById('otp-email-display').textContent = email;
+        document.getElementById('step-credentials').classList.add('hidden');
+        document.getElementById('step-otp').classList.remove('hidden');
+
+        // start timers
+        startOtpTimer(600);
+        startResendCooldown(60);
+
+        // ✅ SHOW OTP ON SCREEN (NEW CODE)
+        showToast('OTP sent successfully!', 'success');
+
+        // OPTION 1: Simple popup
+        alert("Your OTP is: " + data.otp);
+
+        // OPTION 2 (better UI) → uncomment if needed
+        /*
+        showToast("Your OTP is: " + data.otp, 'success');
+        */
+
+    } catch (err) {
+        showToast(err.message, 'error');
+        btn.disabled = false;
+        btn.innerHTML = 'Continue <span>→</span>';
+    }
+});
+
+
+
+
+
 
         // Step 2: Verify OTP
         document.getElementById('otp-form').addEventListener('submit', async (e) => {

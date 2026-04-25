@@ -110,6 +110,11 @@ const dotenv = require('dotenv');
 const bcrypt = require('bcryptjs');
 const User = require('./models/User');
 
+const express = require('express');
+const app = express();
+
+const authRoutes = require('./routes/auth');
+
 dotenv.config();
 
 const app = express();
@@ -214,5 +219,20 @@ async function startServer() {
     process.exit(1);
   }
 }
+
+// const express = require('express');
+// const app = express();
+
+// const authRoutes = require('./routes/auth');
+
+app.use(express.json());
+
+// ✅ connect routes
+app.use('/api/auth', authRoutes);
+
+app.listen(5000, () => {
+  console.log("Server running");
+});
+
 
 startServer();
