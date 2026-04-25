@@ -924,34 +924,7 @@
             initCard3DTilt();
         }
 
-        // Step 1: Submit credentials
-        // document.getElementById('login-form').addEventListener('submit', async (e) => {
-        //     e.preventDefault();
-        //     const email = document.getElementById('email').value;
-        //     const password = document.getElementById('password').value;
-        //     const btn = document.getElementById('login-btn');
-
-        //     btn.disabled = true;
-        //     btn.innerHTML = 'Sending OTP... ⏳';
-
-        //     try {
-        //         const data = await api.auth.login({ email, password });
-        //         pendingUserId = data.userId;
-
-        //         document.getElementById('otp-email-display').textContent = email;
-        //         document.getElementById('step-credentials').classList.add('hidden');
-        //         document.getElementById('step-otp').classList.remove('hidden');
-
-        //         startOtpTimer(600);
-        //         startResendCooldown(60);
-
-        //         showToast('OTP sent! Check your email (or server console in dev).', 'success');
-        //     } catch (err) {
-        //         showToast(err.message, 'error');
-        //         btn.disabled = false;
-        //         btn.innerHTML = 'Continue <span>→</span>';
-        //     }
-        // });
+    
 
         document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -966,12 +939,11 @@
     try {
         const data = await api.auth.login({ email, password });
 
-        // store user id
-        // pendingUserId = data.userId;
+      
 
         pendingUserId = data.userId;
 
-// ✅ ADD THIS LINE (don’t remove above)
+
 localStorage.setItem("userId", data.userId);
 
         // move to OTP screen
@@ -983,16 +955,13 @@ localStorage.setItem("userId", data.userId);
         startOtpTimer(600);
         startResendCooldown(60);
 
-        // ✅ SHOW OTP ON SCREEN (NEW CODE)
+        
         showToast('OTP sent successfully!', 'success');
 
-        // OPTION 1: Simple popup
+        
         alert("Your OTP is: " + data.otp);
 
-        // OPTION 2 (better UI) → uncomment if needed
-        /*
-        showToast("Your OTP is: " + data.otp, 'success');
-        */
+       
 
     } catch (err) {
         showToast(err.message, 'error');
@@ -1002,44 +971,6 @@ localStorage.setItem("userId", data.userId);
 });
 
 
-
-
-
-
-        // Step 2: Verify OTP
-        // document.getElementById('otp-form').addEventListener('submit', async (e) => {
-        //     e.preventDefault();
-        //     const otp = document.getElementById('otp-input').value.trim();
-        //     const btn = document.getElementById('verify-btn');
-
-        //     if (otp.length !== 6) {
-        //         showToast('Please enter the full 6-digit code.', 'error');
-        //         return;
-        //     }
-
-        //     btn.disabled = true;
-        //     btn.innerHTML = 'Verifying... ⏳';
-
-        //     try {
-        //         const data = await api.auth.verifyOtp({ userId: pendingUserId, otp });
-        //         localStorage.setItem('token', data.token);
-        //         localStorage.setItem('user', JSON.stringify(data.user));
-
-        //         clearInterval(otpTimerInterval);
-        //         clearInterval(resendCooldownInterval);
-
-        //         document.getElementById('step-otp').classList.add('hidden');
-        //         document.getElementById('step-success').classList.remove('hidden');
-
-        //         setTimeout(() => {
-        //             window.location.href = data.user.role === 'admin' ? 'admin.html' : 'dashboard.html';
-        //         }, 1200);
-        //     } catch (err) {
-        //         showToast(err.message, 'error');
-        //         btn.disabled = false;
-        //         btn.innerHTML = 'Verify & Log In 🌿';
-        //     }
-        // });
 
 
 document.getElementById('otp-form').addEventListener('submit', async (e) => {
@@ -1084,19 +1015,7 @@ document.getElementById('otp-form').addEventListener('submit', async (e) => {
 
 
 
-        // Resend OTP
-        // document.getElementById('resend-btn').addEventListener('click', async () => {
-        //     if (!pendingUserId) return;
-        //     try {
-        //         await api.auth.resendOtp({ userId: pendingUserId });
-        //         startOtpTimer(600);
-        //         startResendCooldown(60);
-        //         document.getElementById('otp-input').value = '';
-        //         showToast('New OTP sent! Check your email.', 'success');
-        //     } catch (err) {
-        //         showToast(err.message, 'error');
-        //     }
-        // });
+       
 
 
 
@@ -1117,16 +1036,7 @@ document.getElementById('otp-form').addEventListener('submit', async (e) => {
     }
 });
 
-        // // Back button
-        // document.getElementById('back-btn').addEventListener('click', () => {
-        //     clearInterval(otpTimerInterval);
-        //     clearInterval(resendCooldownInterval);
-        //     pendingUserId = null;
-        //     document.getElementById('step-otp').classList.add('hidden');
-        //     document.getElementById('step-credentials').classList.remove('hidden');
-        //     document.getElementById('login-btn').disabled = false;
-        //     document.getElementById('login-btn').innerHTML = 'Continue <span>→</span>';
-        // });
+        
 
         document.getElementById('back-btn').addEventListener('click', () => {
     clearInterval(otpTimerInterval);
