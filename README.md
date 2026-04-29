@@ -1,192 +1,367 @@
-♻️ Waste and Compost Management System
+<div align="center">
 
-🌍 Project Overview
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=🌱%20EcoVerde&fontSize=70&fontColor=a3e635&animation=fadeIn&fontAlignY=35&desc=Waste%20%26%20Compost%20Management%20System&descAlignY=58&descSize=22&descColor=ffffff" width="100%"/>
 
-The Waste and Compost Management System is a full-stack web application designed to promote smart waste disposal and eco-friendly composting practices.
+<!-- BADGES -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active-a3e635?style=for-the-badge&logo=statuspage&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Version-1.0.0-4ade80?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/License-Academic-65a30d?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Made%20with-💚%20at%20LPU-a3e635?style=for-the-badge"/>
+</p>
 
-It allows users to:
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JSON-000000?style=flat-square&logo=json&logoColor=white"/>
+</p>
 
-1.Request waste collection services
-2.Learn composting techniques
-3.Track their activities
+<br/>
 
-At the same time, admins can efficiently manage the entire system through a centralized dashboard.
+> ### *"Technology in service of the planet — one pickup at a time."*
 
-🎯 Goal: Encourage sustainable living and reduce environmental pollution through technology.
+<br/>
 
+</div>
 
-🚀 Key Features
+---
 
-👤 User Module
-🔐 Secure Registration & Login (Authentication)
-🚛 Book Waste Collection Services
-🌱 Explore Composting Services
-📚 Learn Waste Management Techniques
-📊 Personal Dashboard (Track bookings & activity)
-⭐ Submit Reviews & Feedback
-🛠 Admin Module
-🔑 Admin Login Panel
-👥 Manage Users
-🧾 Manage Services
-📦 Manage Bookings
-⭐ Monitor Reviews
-📊 Dashboard Overview
+## 📌 Table of Contents
 
+- [🌍 About the Project](#-about-the-project)
+- [✨ Features at a Glance](#-features-at-a-glance)
+- [🏗️ Project Structure](#️-project-structure)
+- [💻 Tech Stack](#-tech-stack)
+- [⚙️ How It Works](#️-how-it-works)
+- [🚀 Installation & Setup](#-installation--setup)
+- [🔐 Environment Variables](#-environment-variables)
+- [📸 Pages Overview](#-pages-overview)
+- [🌱 Future Roadmap](#-future-roadmap)
+- [👩‍💻 Team](#-team)
+- [📄 License](#-license)
 
-🏗️ Project Structure
+---
 
+## 🌍 About the Project
+
+**EcoVerde — Waste & Compost Management System** is a full-stack web application built to promote **smart waste disposal** and **eco-friendly composting** practices across communities.
+
+The platform bridges the gap between households generating waste and the services that can responsibly process it — making sustainable living **accessible, trackable, and rewarding**.
+
+<table>
+<tr>
+<td>
+
+**The Problem 😟**
+- Millions of tonnes of organic waste end up in landfills every year
+- Most households lack awareness of composting options
+- No centralized platform exists to book eco-services easily
+- Recycling rates remain critically low due to inconvenience
+
+</td>
+<td>
+
+**Our Solution 💚**
+- One platform for all waste management needs
+- Instant service booking with tracked history
+- Rich educational resources on composting
+- Admin tools to scale and manage the ecosystem
+
+</td>
+</tr>
+</table>
+
+---
+
+## ✨ Features at a Glance
+
+### 👤 User Module
+
+| Feature | Description |
+|---|---|
+| 🔐 **Auth System** | Secure register & login with JWT authentication |
+| 🚛 **Book Pickups** | Schedule waste collection at your convenience |
+| 🌱 **Composting Services** | Browse and book composting setups by experts |
+| 📚 **Learn Hub** | Guides, tips, and techniques for sustainable living |
+| 📊 **Personal Dashboard** | Track all bookings, activity & eco-impact stats |
+| ⭐ **Reviews & Feedback** | Rate services and share experiences |
+
+### 🛠️ Admin Module
+
+| Feature | Description |
+|---|---|
+| 🔑 **Admin Login** | Separate secured admin panel |
+| 👥 **User Management** | View, manage and monitor all registered users |
+| 🧾 **Service Management** | Add, edit and remove available services |
+| 📦 **Booking Management** | Track and update all booking statuses |
+| ⭐ **Review Monitoring** | Moderate and analyze user feedback |
+| 📊 **Admin Dashboard** | Bird's-eye view of the entire platform |
+
+---
+
+## 🏗️ Project Structure
+
+```
 waste-and-composite-management-main/
 │
-├── frontend/
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   ├── dashboard.html
-│   ├── services.html
-│   ├── education.html
-│   └── admin.html
+├── 📁 frontend/
+│   ├── 🌐 index.html          ← Landing page
+│   ├── 🔐 login.html          ← Login & Register
+│   ├── 📝 register.html       ← Registration page
+│   ├── 📊 dashboard.html      ← User dashboard
+│   ├── 🧾 services.html       ← Services listing
+│   ├── 📚 education.html      ← Learn composting
+│   └── 🛠️ admin.html          ← Admin panel
 │
-├── backend/
-│   ├── server.js
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── .env.example
-│   ├── users.json
-│   ├── bookings.json
-│   ├── services.json
-│   ├── reviews.json
-│   └── .gitignore
+├── 📁 backend/
+│   ├── 🚀 server.js           ← Main Express server
+│   ├── 📦 package.json        ← Dependencies
+│   ├── 🔒 .env.example        ← Environment template
+│   ├── 👤 users.json          ← User data store
+│   ├── 📅 bookings.json       ← Bookings data store
+│   ├── 🧾 services.json       ← Services data store
+│   └── ⭐ reviews.json        ← Reviews data store
 │
-├── README.md
-├── CHANGES.md
-└── GMAIL_SETUP.md
+├── 📄 README.md
+├── 📄 CHANGES.md
+└── 📄 GMAIL_SETUP.md
+```
 
+---
 
-💻 Technologies Used
+## 💻 Tech Stack
 
-🌐 Frontend
+<table>
+<tr>
+<th>Layer</th>
+<th>Technology</th>
+<th>Purpose</th>
+</tr>
+<tr>
+<td>🌐 Frontend</td>
+<td>HTML5, CSS3, JavaScript</td>
+<td>UI, animations, interactivity</td>
+</tr>
+<tr>
+<td>⚙️ Backend</td>
+<td>Node.js + Express.js</td>
+<td>REST API, routing, business logic</td>
+</tr>
+<tr>
+<td>🗄️ Storage</td>
+<td>JSON file-based storage</td>
+<td>Lightweight data persistence</td>
+</tr>
+<tr>
+<td>🔐 Auth</td>
+<td>JWT (JSON Web Tokens)</td>
+<td>Secure user sessions</td>
+</tr>
+<tr>
+<td>📧 Email</td>
+<td>Nodemailer</td>
+<td>Notifications & confirmations</td>
+</tr>
+<tr>
+<td>🔧 Config</td>
+<td>dotenv</td>
+<td>Secure environment management</td>
+</tr>
+<tr>
+<td>🔗 API</td>
+<td>CORS</td>
+<td>Cross-origin request handling</td>
+</tr>
+</table>
 
-HTML
-CSS
-JavaScript
+---
 
-⚙️ Backend
+## ⚙️ How It Works
 
-Node.js
-Express.js
+```
+ ┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+ │   Register  │────▶│    Login    │────▶│  Browse &   │────▶│  Dashboard  │
+ │  / Sign Up  │     │    Auth     │     │  Book Svc   │     │   & Track   │
+ └─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
+                           │
+                           ▼
+                    ┌─────────────┐
+                    │    Admin    │
+                    │  Dashboard  │
+                    │ (Manage All)│
+                    └─────────────┘
+```
 
-🗄️ Database / Storage
+1. **User registers** via the registration form with name, email & password
+2. **Secure login** issues a JWT token for the session
+3. **Browse services** — waste pickup, composting, consulting & more
+4. **Book a service** — choose date, time and confirm booking instantly
+5. **Track via dashboard** — see all bookings, statuses, and eco-impact
+6. **Admin oversees** all users, bookings, services and reviews centrally
 
-JSON-based file storage
-Environment configuration using dotenv
+---
 
-🧰 Additional Tools
+## 🚀 Installation & Setup
 
-Nodemailer (Email Services)
-CORS
-dotenv
+### Prerequisites
 
+Make sure you have the following installed:
 
-⚙️ How the System Works
+```bash
+node --version   # v16 or higher
+npm --version    # v8 or higher
+```
 
-1.User Registration
-Users create an account using the registration page.
-2.Login Authentication
-Secure login using email and password.
-3.Browse Services
-Users explore available waste and composting services.
-4.Book Services
-Request waste pickup or composting services.
-5.Dashboard Access
-Track bookings, activities, and status.
-6.Admin Management
-Admin manages users, services, bookings, and reviews.
+### Step 1 — Clone the Repository
 
-
-🛠 Installation & Setup Guide
-
-1️⃣ Clone the Repository
-
+```bash
 git clone https://github.com/pallavi015-2006/waste-and-composite-management.git
 cd waste-and-composite-management-main
+```
 
+### Step 2 — Install Backend Dependencies
 
-2️⃣ Backend Setup
-
+```bash
 cd backend
 npm install
+```
 
+### Step 3 — Configure Environment Variables
 
-3️⃣ Environment Configuration
+```bash
+# Copy the example file
+cp .env.example .env
 
-Create a .env file inside the backend folder.
+# Open .env and fill in your values
+nano .env
+```
 
-Example:
-PORT=5001
-JWT_SECRET=your_secret_key
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
+### Step 4 — Start the Backend Server
 
-⚠️ Important:
-
-Never push .env file to GitHub
-Use .env.example as reference
-
-
-4️⃣ Run Backend Server
+```bash
+# Standard start
 npm start
-or
+
+# Development mode (auto-restarts on changes)
 npm run dev
+```
 
+> ✅ Server runs on **http://localhost:5001**
 
-5️⃣ Run Frontend
-Open frontend/index.html in browser
-OR
-Use Live Server (VS Code)
+### Step 5 — Launch the Frontend
 
+```bash
+# Option A: Simply open in browser
+open frontend/index.html
 
-📂 Important Notes
+# Option B: Use VS Code Live Server (recommended)
+# Right-click index.html → "Open with Live Server"
+```
 
-❌ Do NOT upload node_modules/
-❌ Do NOT upload .env
-✅ Use .env.example for sharing config
+> ✅ Frontend runs on **http://127.0.0.1:5500**
 
-Recommended .gitignore
+---
 
-node_modules
-.env
-.DS_Store
+## 🔐 Environment Variables
 
+Create a `.env` file inside the `/backend` folder:
 
-🌱 Future Improvements
+```env
+# Server
+PORT=5001
 
-💳 Payment Gateway Integration
-🔔 Real-Time Notifications
-🤖 AI-Based Waste Classification
-📡 Smart IoT Waste Bin Integration
-📱 Mobile Responsive Version
-📊 Advanced Analytics Dashboard
+# Security
+JWT_SECRET=your_super_secret_key_here
 
+# Email (Nodemailer — use Gmail App Password)
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_gmail_app_password
+```
 
-🎯 Project Objective
+| Variable | Description | Example |
+|---|---|---|
+| `PORT` | Port the server listens on | `5001` |
+| `JWT_SECRET` | Secret key for signing tokens | `mysecretkey123` |
+| `EMAIL_USER` | Gmail address for sending emails | `hello@gmail.com` |
+| `EMAIL_PASS` | Gmail **App Password** (not your login password) | `abcd efgh ijkl mnop` |
 
-This project aims to:
+> ⚠️ **Never push your `.env` file to GitHub.** Use `.env.example` as a safe template to share.
 
-Promote eco-friendly waste management 🌿
-Improve recycling habits ♻️
-Encourage composting practices 🌱
-Build awareness for sustainable living 🌍
+---
 
+## 📸 Pages Overview
 
-👩‍💻 Developed By
+| Page | Route | Description |
+|---|---|---|
+| 🏠 Home | `index.html` | Landing page with hero, stats, features |
+| 🔐 Login | `login.html` | User login & registration |
+| 📊 Dashboard | `dashboard.html` | Personal eco-dashboard & booking history |
+| 🧾 Services | `services.html` | Browse & book all eco services |
+| 📚 Education | `education.html` | Composting guides & learning resources |
+| 🛠️ Admin | `admin.html` | Full admin management panel |
 
-Pahar Dwivedi
-Pallavi Kumari
-Riya Sharma
-B.Tech CSE Students
-Lovely Professional University
+---
 
+## 🌱 Future Roadmap
 
-📄 License
+```
+Phase 1 (Current) ✅
+├── User Auth & JWT
+├── Service Booking
+├── Educational Content
+├── Admin Dashboard
+└── Review System
 
+Phase 2 (Planned) 🔄
+├── 💳 Payment Gateway Integration (Razorpay)
+├── 🔔 Real-Time Notifications (Socket.io)
+└── 📱 Mobile Responsive Redesign
+
+Phase 3 (Future) 🌟
+├── 🤖 AI-Based Waste Classification (TensorFlow.js)
+├── 📡 Smart IoT Waste Bin Integration
+├── 📊 Advanced Analytics & Reports
+└── 🗺️ GPS-Based Pickup Tracking
+```
+
+---
+
+## 👩‍💻 Team
+
+<div align="center">
+
+| 👤 Name | 🏫 Institution |
+|---|---|
+| **Pahar Dwivedi** | Lovely Professional University |
+| **Pallavi Kumari** | Lovely Professional University |
+| **Riya Sharma** | Lovely Professional University |
+
+*B.Tech CSE Students — Building tech for a greener tomorrow 🌍*
+
+</div>
+
+---
+
+## 📄 License
+
+```
 This project is developed for educational and academic purposes only.
+© 2024 EcoVerde Team — Lovely Professional University
+
+Redistribution or commercial use without permission is not permitted.
+```
+
+---
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer&animation=fadeIn" width="100%"/>
+
+**Made with 💚 by the EcoVerde Team at LPU**
+
+*If this project helped you, please give it a ⭐ on GitHub!*
+
+</div>
