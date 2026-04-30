@@ -360,7 +360,7 @@ Redistribution or commercial use without permission is not permitted.
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer&animation=fadeIn" width="100%"/>
 
-**Made with 💚 by the EcoVerde Team at LPU**
+**Made with 💚 by the Compostify Team at LPU**
 
 *If this project helped you, please give it a ⭐ on GitHub!*
 
