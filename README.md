@@ -47,7 +47,7 @@
 
 ## 🌍 About the Project
 
-**EcoVerde — Waste & Compost Management System** is a full-stack web application built to promote **smart waste disposal** and **eco-friendly composting** practices across communities.
+**Compostify — Waste & Compost Management System** is a full-stack web application built to promote **smart waste disposal** and **eco-friendly composting** practices across communities.
 
 The platform bridges the gap between households generating waste and the services that can responsibly process it — making sustainable living **accessible, trackable, and rewarding**.
 
