@@ -192,7 +192,13 @@ router.post('/forgot-password', async (req, res) => {
   try {
     const { email } = req.body;
 
-    const user = await User.findOne({ email });
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
+    }
+
+    const emailNormalized = email.toLowerCase().trim();
+
+    const user = await User.findOne({ email: emailNormalized });
     if (!user) return res.status(400).json({ message: 'Invalid request' });
 
     const resetOtp = generateOTP();
@@ -211,6 +217,44 @@ router.post('/forgot-password', async (req, res) => {
       message: 'Reset code sent',
       userId: user._id,
       otp: resetOtp   // optional
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// ================= VERIFY RESET OTP =================
+router.post('/verify-reset-otp', async (req, res) => {
+  try {
+    const { userId, otp } = req.body;
+
+    if (!userId || !otp) {
+      return res.status(400).json({ message: 'User ID and OTP are required' });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    if (!user.resetOtp || !user.resetOtpExpiry) {
+      return res.status(400).json({ message: 'No reset code requested' });
+    }
+
+    if (new Date() > user.resetOtpExpiry) {
+      user.resetOtp = null;
+      user.resetOtpExpiry = null;
+      await user.save();
+      return res.status(400).json({ message: 'Reset code expired' });
+    }
+
+    if (user.resetOtp !== otp) {
+      return res.status(400).json({ message: 'Invalid reset code' });
+    }
+
+    res.json({
+      message: 'Reset code verified',
+      userId: user._id
     });
 
   } catch (err) {

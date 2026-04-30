@@ -10,6 +10,18 @@ if (!EMAIL || !PASSWORD) {
 }
 
 // ✅ Create transporter (SMTP config - more reliable)
+// const transporter = nodemailer.createTransport({
+//   host: 'smtp.gmail.com',
+//   port: 587,
+//   secure: false,
+//   auth: {
+//     user: EMAIL,
+//     pass: PASSWORD
+//   }
+// });
+
+// ✅ Verify connection (optional but useful)
+
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
@@ -17,10 +29,14 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: EMAIL,
     pass: PASSWORD
+  },
+  connectionTimeout: 60000,
+  greetingTimeout: 30000,
+  socketTimeout: 60000,
+  tls: {
+    rejectUnauthorized: false
   }
 });
-
-// ✅ Verify connection (optional but useful)
 transporter.verify((error, success) => {
   if (error) {
     console.error('❌ Email server connection failed:', error.message);
